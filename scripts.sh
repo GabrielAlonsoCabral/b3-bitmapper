@@ -1,5 +1,5 @@
 # GENERATE ACTIVATE VIRTUAL ENV
-# python -m venv ./
+# python -m venv ./venv
 
 #ACTIVATE VIRTUAL ENV
 #source env/bin/activate
