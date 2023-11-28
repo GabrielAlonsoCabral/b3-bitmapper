@@ -1,3 +1,4 @@
+# SCRIPT IN PROGRESS
 import pandas as pd
 
 df = pd.read_csv("_COTAHIST_A2023.csv", low_memory=False)
