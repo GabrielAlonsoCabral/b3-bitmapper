@@ -6,3 +6,7 @@
 
 #DEACTIVATE VIRTUAL ENV
 #deactivate
+
+# CHANGE FILEPATH
+# mv *.csv ../b3-data-provider/files/historical-series
+# mv ../b3-data-provider/files/historical-series/_example.csv .
