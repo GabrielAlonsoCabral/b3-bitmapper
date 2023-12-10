@@ -11,3 +11,4 @@ COTAHIST_*.txt
 
 __pycache__
 .env
+!requirements.txt
