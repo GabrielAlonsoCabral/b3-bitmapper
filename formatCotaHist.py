@@ -1,7 +1,14 @@
+import os
 import time
 from sys import exit
 
 import pandas as pd
+from dotenv import load_dotenv
+
+from s3 import upload_to_s3
+
+load_dotenv()
+
 
 print("info: only .txt files are allowed.")
 filename = input('filepath(without extension):')
@@ -13,14 +20,21 @@ def gerar_arquivo(option):
     print('\nWriting dataframe on the new format...')
     time3 = time.time()
     duration2 = round((time3 - time2), 2)
+    filename_with_extension='_'+filename+'.csv'
 
+
+    if option == str(0):
+        df_global.to_csv('_' + filename + '.csv')
+        bucket_name = os.getenv("AWS_BUCKET_NAME")
+        s3_key = os.getenv("AWS_BUCKET_KEY")
+        upload_to_s3(filename_with_extension,bucket_name,s3_key+filename_with_extension)
     if option == str(1):
         df_global.to_csv('_' + filename + '.csv')
     elif option == str(2):
         df_global.to_excel('_' + filename + '.xlsx')
     elif option == str(3):
         df_global.to_csv('_' + filename + '.csv')
-        df_global.to_excel('_' + filename + '.xlsx')
+        df_global.to_excel('_' + filename + '.xlsx')        
     else:
         print('\nClosing script!\n')
         exit()
@@ -65,4 +79,4 @@ time2 = time.time()
 duration1 = round((time2 - time1), 2)
 print('\nDataframe created sucessfully in ' + str(duration1) + ' seconds')
 
-gerar_arquivo(input('\ncsv(1)\nxlsx(2)\ncsv and xlsx(3)\nexit(4)\n'))
+gerar_arquivo(input('\nUpload csv to bucket(0)\ncsv(1)\nxlsx(2)\ncsv and xlsx(3)\nexit(4)\n'))

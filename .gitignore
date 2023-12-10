@@ -8,3 +8,6 @@ COTAHIST_*.txt
 
 .logs/**
 !.logs/*.gitkeep
+
+__pycache__
+.env
